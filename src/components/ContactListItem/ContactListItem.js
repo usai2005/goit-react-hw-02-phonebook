@@ -6,12 +6,17 @@ export const ContactListItem = ({
   transferOnDeleteContact,
 }) => {
   return transferContactsData.map(({ id, name, number }) => (
-    <li onClick={() => transferOnDeleteContact(id)} key={id}>
+    <li>
       <div>
         <p>
           {name}: <span>{number}</span>
         </p>
-        <button className={css.item__button} type="button">
+        <button
+          className={css.item__button}
+          type="button"
+          onClick={() => transferOnDeleteContact(id)}
+          key={id}
+        >
           Delete
         </button>
       </div>
