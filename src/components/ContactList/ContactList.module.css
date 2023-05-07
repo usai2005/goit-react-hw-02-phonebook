@@ -1,9 +1,7 @@
 .contact__list div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    
     max-width: 500px;
-}
+} 
 
 .contact__list {
     list-style-image: url(../../img/phone.svg
@@ -11,7 +9,13 @@
 }
 
 .contact__list li:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.contact__list div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .contact__list p {

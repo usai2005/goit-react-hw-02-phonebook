@@ -18,16 +18,7 @@ export class App extends Component {
   };
 
   formSubmitHandler = ({ name, number }) => {
-    const generatedId = nanoid();
-
-    const contactsFromState = this.state.contacts;
-
-    const contact = { id: generatedId, name, number };
-
-    if (contactsFromState.find(stateContact => stateContact.name === name)) {
-      alert(`${name} is already in contacts list`);
-      return;
-    }
+    const contact = { id: nanoid(), name, number };
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
@@ -62,7 +53,10 @@ export class App extends Component {
     return (
       <div className={css.phonebook__section}>
         <h1 className={css.phonebook__title}>Phonebook</h1>
-        <ContactForm onFormSubmit={this.formSubmitHandler} />
+        <ContactForm
+          onFormSubmit={this.formSubmitHandler}
+          existingContacts={this.state.contacts}
+        />
         <h2 className={css.contacts__title}>Contacts</h2>
         <Filter filterData={filter} filterChange={this.filterChangeHandler} />
         <ContactList

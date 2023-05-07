@@ -9,20 +9,33 @@ export class ContactForm extends Component {
   };
 
   handleChange = e => {
-    const { name, value } = e.currentTarget;
+    const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onFormSubmit(this.state);
-
-    this.stateReset();
+    const existingContacts = this.props.existingContacts;
+    if (
+      existingContacts.find(
+        existingContact => existingContact.name === this.state.name
+      )
+    ) {
+      this.onNameExists();
+    } else {
+      this.props.onFormSubmit(this.state);
+      this.stateReset();
+    }
   };
 
   stateReset = () => {
     this.setState({ name: '', number: '' });
+  };
+
+  onNameExists = () => {
+    alert(`${this.state.name} is already in contacts list`);
+    this.setState({ name: this.state.name, number: this.state.number });
   };
 
   render() {
